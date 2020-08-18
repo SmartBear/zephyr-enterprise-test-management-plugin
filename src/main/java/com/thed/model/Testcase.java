@@ -3,7 +3,6 @@ package com.thed.model;
 public class Testcase extends BaseEntity {
 
     private String name;
-    private String tag;
     private String description;
     private Long projectId;
     private Long releaseId;
@@ -18,14 +17,6 @@ public class Testcase extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
     }
 
     public String getDescription() {
