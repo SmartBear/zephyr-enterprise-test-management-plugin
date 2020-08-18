@@ -45,6 +45,7 @@ public class ZephyrRestServiceImpl implements ZephyrRestService {
     public static final String GET_TESTCASES_FOR_TREE_ID_URL = "/flex/services/rest/{restVersion}/testcase/tree/{tcrCatalogTreeId}"; //?offset=0&pagesize=50&dbsearch=true&isascorder=true&order=orderId&frozen=false&is_cfield=false
     public static final String GET_TESTCASES_FOR_TREE_ID_FROM_PLANNING_URL = "/flex/services/rest/{restVersion}/testcase/planning/{tcrCatalogTreeId}"; //?offset=0&pagesize=50&dbsearch=true&isascorder=true&order=orderId
     public static final String CREATE_TESTCASES_BULK_URL = "/flex/services/rest/{restVersion}/testcase/bulk";
+    public static final String UPDATE_TESTCASES_URL = "/flex/services/rest/{restVersion}/testcase/update";
 
     public static final String GET_CYCLE_BY_ID_URL = "/flex/services/rest/{restVersion}/cycle/{id}";
     public static final String CREATE_CYCLE_URL = "/flex/services/rest/{restVersion}/cycle";
@@ -367,6 +368,15 @@ public class ZephyrRestServiceImpl implements ZephyrRestService {
     public List<TCRCatalogTreeTestcase> createTestcases(List<TCRCatalogTreeTestcase> tcrCatalogTreeTestcases) throws URISyntaxException, IOException {
         String url = prepareUrl(CREATE_TESTCASES_BULK_URL);
         String res = httpClientService.postRequest(url, GsonUtil.CUSTOM_GSON.toJson(tcrCatalogTreeTestcases));
+
+        Type tcrCatalogTreeTestcaseListType = new TypeToken<List<TCRCatalogTreeTestcase>>(){}.getType();
+        return GsonUtil.CUSTOM_GSON.fromJson(res, tcrCatalogTreeTestcaseListType);
+    }
+
+    @Override
+    public List<TCRCatalogTreeTestcase> updateTestcases(List<TestcaseBulkUpdateParam> testcaseBulkUpdateParamList) throws URISyntaxException, IOException {
+        String url = prepareUrl(UPDATE_TESTCASES_URL);
+        String res = httpClientService.putRequest(url, GsonUtil.CUSTOM_GSON.toJson(testcaseBulkUpdateParamList));
 
         Type tcrCatalogTreeTestcaseListType = new TypeToken<List<TCRCatalogTreeTestcase>>(){}.getType();
         return GsonUtil.CUSTOM_GSON.fromJson(res, tcrCatalogTreeTestcaseListType);

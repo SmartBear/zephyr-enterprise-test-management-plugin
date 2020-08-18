@@ -1,9 +1,7 @@
 package com.thed.service.impl;
 
-import com.thed.model.PlanningTestcase;
-import com.thed.model.TCRCatalogTreeTestcase;
-import com.thed.model.TestStep;
-import com.thed.model.Testcase;
+import com.google.common.collect.Lists;
+import com.thed.model.*;
 import com.thed.service.TestcaseService;
 import com.thed.utils.ZephyrConstants;
 import hudson.tasks.junit.CaseResult;
@@ -111,5 +109,35 @@ public class TestcaseServiceImpl extends BaseServiceImpl implements TestcaseServ
         }
         return testcaseList;
     }
+
+    @Override
+    public List<TCRCatalogTreeTestcase> updateTestcaseTags(List<TCRCatalogTreeTestcase> tcrCatalogTreeTestcaseList) throws IOException, URISyntaxException {
+        List<TCRCatalogTreeTestcase> resultList = new ArrayList<>();
+        Map<Set<String>, List<TctTestcaseVersionParam>> tagTestcaseMap = new HashMap<>();
+        List<List<TCRCatalogTreeTestcase>> subLists = Lists.partition(tcrCatalogTreeTestcaseList, ZephyrConstants.BATCH_SIZE);
+
+        for(List<TCRCatalogTreeTestcase> subList : subLists) {
+            for (TCRCatalogTreeTestcase tcrCatalogTreeTestcase : subList) {
+                Set<String> tagSet = new HashSet<>(Arrays.asList(tcrCatalogTreeTestcase.getTestcase().getTag().split(" ")));
+                TctTestcaseVersionParam param = new TctTestcaseVersionParam(tcrCatalogTreeTestcase.getId(), tcrCatalogTreeTestcase.getTestcase().getId());
+                if(tagTestcaseMap.containsKey(tagSet)) {
+                    tagTestcaseMap.get(tagSet).add(param);
+                } else {
+                    tagTestcaseMap.put(tagSet, Collections.singletonList(param));
+                }
+            }
+            resultList.addAll(updateTagsInTestcases(tagTestcaseMap));
+        }
+        return resultList;
+    }
+
+    private List<TCRCatalogTreeTestcase> updateTagsInTestcases(Map<Set<String>, List<TctTestcaseVersionParam>> tagTestcaseMap) throws IOException, URISyntaxException {
+        List<TestcaseBulkUpdateParam> paramList = new ArrayList<>();
+        for(Map.Entry<Set<String>, List<TctTestcaseVersionParam>> entry : tagTestcaseMap.entrySet()) {
+            paramList.add(new TestcaseBulkUpdateParam(String.join(" ", entry.getKey()), entry.getValue()));
+        }
+        return zephyrRestService.updateTestcases(paramList);
+    }
+
 
 }

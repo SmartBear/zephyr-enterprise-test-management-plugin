@@ -12,6 +12,7 @@ import com.thed.parser.ParserUtil;
 import com.thed.service.*;
 import com.thed.service.impl.*;
 import com.thed.utils.EggplantParser;
+import com.thed.utils.ListUtil;
 import com.thed.utils.ZephyrConstants;
 import com.thed.zephyr.jenkins.model.ZephyrConfigModel;
 import com.thed.zephyr.jenkins.model.ZephyrInstance;
@@ -434,6 +435,7 @@ public class UploadResultCallable extends MasterToSlaveFileCallable<Boolean> {
     private List<TCRCatalogTreeTestcase> createTestcasesWithoutDuplicate(Map<Long, List<Testcase>> treeIdTestcaseMap) throws URISyntaxException, IOException {
 
         List<TCRCatalogTreeTestcase> existingTestcases = new ArrayList<>();
+        List<TCRCatalogTreeTestcase> updateTagTestcases = new ArrayList<>();
         Map<Long, List<Testcase>> toBeCreatedTestcases = new HashMap<>();
 
         for(Map.Entry<Long, List<Testcase>> entry : treeIdTestcaseMap.entrySet()) {
@@ -459,7 +461,16 @@ public class UploadResultCallable extends MasterToSlaveFileCallable<Boolean> {
                 for (TCRCatalogTreeTestcase tcrCatalogTreeTestcase : tcrTestcases) {
                     if(tcrCatalogTreeTestcase.getTestcase().getName().equals(testcase.getName())) {
                         //this testcase already exists in this tree, no need to create
-                        existingTestcases.add(tcrCatalogTreeTestcase);
+                        if((StringUtils.isNotBlank(testcase.getTag()))
+                                && (StringUtils.isBlank(tcrCatalogTreeTestcase.getTestcase().getTag()) ||
+                                !ListUtil.getSet(tcrCatalogTreeTestcase.getTestcase().getTag(), " ").equals(ListUtil.getSet(testcase.getTag(), " ")))) {
+                            //parsed tag is not null and is not equal to existing tag so update the tag
+                            tcrCatalogTreeTestcase.getTestcase().setTag(tcrCatalogTreeTestcase.getTestcase().getTag() + " " + testcase.getTag());
+                            updateTagTestcases.add(tcrCatalogTreeTestcase);
+                        } else {
+                            //no tag change found so no need to update
+                            existingTestcases.add(tcrCatalogTreeTestcase);
+                        }
                         tcrTestcases.remove(tcrCatalogTreeTestcase);
                         continue testcaseLoop;
                     }
@@ -475,6 +486,10 @@ public class UploadResultCallable extends MasterToSlaveFileCallable<Boolean> {
                     addToList.add(testcase);
                 }
             }
+        }
+
+        if(!updateTagTestcases.isEmpty()) {
+            existingTestcases.addAll(testcaseService.updateTestcaseTags(updateTagTestcases));
         }
 
         if(!toBeCreatedTestcases.isEmpty()) {

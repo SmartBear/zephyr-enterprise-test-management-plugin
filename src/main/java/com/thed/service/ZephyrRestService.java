@@ -151,12 +151,21 @@ public interface ZephyrRestService {
     List<PlanningTestcase> getTestcasesForTreeIdFromPlanning(Long tcrCatalogTreeId, Integer offset, Integer pageSize) throws URISyntaxException, IOException;
 
     /**
-     * Create testcases in bulk
+     * Create testcases in bulk.
      * @param tcrCatalogTreeTestcases
      * @return
      * @throws URISyntaxException
      */
     List<TCRCatalogTreeTestcase> createTestcases(List<TCRCatalogTreeTestcase> tcrCatalogTreeTestcases) throws URISyntaxException, IOException;
+
+    /**
+     * Update testcases in bulk.
+     * @param testcaseBulkUpdateParamList
+     * @return
+     * @throws URISyntaxException
+     * @throws IOException
+     */
+    List<TCRCatalogTreeTestcase> updateTestcases(List<TestcaseBulkUpdateParam> testcaseBulkUpdateParamList) throws URISyntaxException, IOException;
 
     /**
      * Get cycle for id.

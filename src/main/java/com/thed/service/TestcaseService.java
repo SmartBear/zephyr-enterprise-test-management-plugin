@@ -52,4 +52,11 @@ public interface TestcaseService extends BaseService {
 
     List<TCRCatalogTreeTestcase> createTestcasesWithList(Map<Long, List<Testcase>> treeIdTestcaseMap) throws URISyntaxException, IOException;
 
+    /**
+     * Update tags of the testcases provided to their respective values.
+     * @param tcrCatalogTreeTestcaseList
+     * @return
+     */
+    List<TCRCatalogTreeTestcase> updateTestcaseTags(List<TCRCatalogTreeTestcase> tcrCatalogTreeTestcaseList) throws IOException, URISyntaxException;
+
 }
