@@ -372,8 +372,8 @@ public class UploadResultCallable extends MasterToSlaveFileCallable<Boolean> {
         TCRCatalogTreeDTO automationPhase = null;
         for(TCRCatalogTreeDTO tcrCatalogTreeDTO : tcrCatalogTreeDTOList) {
             if(tcrCatalogTreeDTO.getName().equals(ZephyrConstants.TOP_PARENT_PHASE_NAME)) {
-                if((zephyrConfigModel.isCreatePackage() && tcrCatalogTreeDTO.getDescription().equals(ZephyrConstants.PACKAGE_TRUE_DESCRIPTION))
-                        || (!zephyrConfigModel.isCreatePackage() && tcrCatalogTreeDTO.getDescription().equals(ZephyrConstants.PACKAGE_FALSE_DESCRIPTION))) {
+                if((zephyrConfigModel.isCreatePackage() && ZephyrConstants.PACKAGE_TRUE_DESCRIPTION.equals(tcrCatalogTreeDTO.getDescription()))
+                        || (!zephyrConfigModel.isCreatePackage() && ZephyrConstants.PACKAGE_FALSE_DESCRIPTION.equals(tcrCatalogTreeDTO.getDescription()))) {
                     automationPhase = tcrCatalogTreeDTO;
                     createPhase = false;
                 }
