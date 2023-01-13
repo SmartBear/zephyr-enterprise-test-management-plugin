@@ -7,7 +7,7 @@
       <version>3.49</version> <!-- for jenkinsVersion=2.176.3, 2.164.3 -->
       <!-- which version of Jenkins is this plugin built against? -->
   </parent>
-
+<!-- test-->
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>zephyr-enterprise-test-management</artifactId>
   <version>2.6-SNAPSHOT</version>
