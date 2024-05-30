@@ -5,7 +5,6 @@ import com.thed.model.*;
 import com.thed.service.TestcaseService;
 import com.thed.utils.ZephyrConstants;
 import hudson.tasks.junit.CaseResult;
-import org.jaxen.pantry.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
