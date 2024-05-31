@@ -84,9 +84,9 @@
             <plugin>
                 <groupId>org.jenkins-ci.tools</groupId>
                 <artifactId>maven-hpi-plugin</artifactId>
-                <version>3.8</version>
+                <version>3.53</version>
                 <configuration>
-                    <minimumJavaVersion>17</minimumJavaVersion>
+                    <disabledTestInjection>true</disabledTestInjection>
                 </configuration>
             </plugin>
         </plugins>
@@ -290,7 +290,7 @@
     </dependencies>
 
     <scm>
-        <connection>scm:git:git://github.com/jenkinsci/zephyr-enterprise-test-management-plugin.git</connection>
+        <connection>scm:git:https://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/zephyr-enterprise-test-management-plugin.git
         </developerConnection>
         <url>https://github.com/jenkinsci/zephyr-enterprise-test-management-plugin</url>
