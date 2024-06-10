@@ -1,6 +1,7 @@
 <!--
   This view is used to render the installed plugins page.
 -->
+<?jelly escape-by-default='true'?>
 <div>
-This plugin creates test cases in Zephyr for the project unit tests.
+This plugin creates test cases and updates their statuses in Zephyr for the project unit tests.
 </div>
