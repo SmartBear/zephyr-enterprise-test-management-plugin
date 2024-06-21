@@ -9,10 +9,9 @@
 
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>zephyr-enterprise-test-management</artifactId>
-    <version>2.9-SNAPSHOT</version>
+    <version>2.9</version>
     <packaging>hpi</packaging>
     <name>Zephyr Enterprise Test Management plugin</name>
-    <description>Creates Test Cases and update their statuses for unit tests.</description>
     <url>https://github.com/jenkinsci/zephyr-enterprise-test-management-plugin</url>
     <developers>
         <developer>
