@@ -29,7 +29,7 @@ public class HttpClientServiceImpl implements HttpClientService {
 
     private BasicCookieStore cookieStore; // This stores cookies for created by client or set by server side.
     private List<Header> headers;
-    private ThreadLocal<CloseableHttpClient> httpClient = new ThreadLocal<>();
+    private CloseableHttpClient httpClient;
 
     public HttpClientServiceImpl() {
         cookieStore = new BasicCookieStore();
@@ -39,9 +39,9 @@ public class HttpClientServiceImpl implements HttpClientService {
         }
     }
 
-    private CloseableHttpClient initHttpClient() {
+    private void initHttpClient() {
         HttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
-        return HttpClientBuilder.create()
+        httpClient = HttpClientBuilder.create()
                 .setConnectionManager(connectionManager)
                 .setDefaultCookieStore(cookieStore)
                 .build();
@@ -194,19 +194,14 @@ public class HttpClientServiceImpl implements HttpClientService {
     }
 
     private CloseableHttpClient getHttpClient() {
-        CloseableHttpClient client = httpClient.get();
-        if(client == null) {
-            client = initHttpClient();
-            httpClient.set(client);
+        if(httpClient == null) {
+            initHttpClient();
         }
-        return client;
+        return httpClient;
     }
 
     public void closeHttpClient() throws IOException {
-        CloseableHttpClient client = httpClient.get();
-        if (client != null) {
-            client.close();
-            httpClient.remove();
-        }
+        httpClient.close();
+        httpClient = null;
     }
 }
