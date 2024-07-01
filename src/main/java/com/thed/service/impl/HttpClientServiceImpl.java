@@ -201,7 +201,9 @@ public class HttpClientServiceImpl implements HttpClientService {
     }
 
     public void closeHttpClient() throws IOException {
-        httpClient.close();
-        httpClient = null;
+        if(httpClient != null) {
+            httpClient.close();
+            httpClient = null;
+        }
     }
 }
