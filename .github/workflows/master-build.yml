@@ -1,0 +1,40 @@
+name: Master Build
+
+on:
+  push:
+    branches: [ "integration" ]
+  pull_request:
+    branches: [ "integration" ]
+
+env:
+  BACKEND_REPO: 'SmartBear/zephyr-enterprise-test-management-plugin'
+  BACKEND_BRANCH: 'integration'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+  
+    - name: Checkout BackEnd Code
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ env.BACKEND_REPO }}
+        ref: ${{ env.BACKEND_BRANCH }}     
+        
+    - name: Build with Maven
+      run: mvn -B clean package -Dmaven.test.skip=true
+      
+    - name: Copy Files to FTP Server
+      shell: bash
+      run: |
+        scp target/zephyr-enterprise-test-management*.hpi zephyr@18.221.237.186:/share-infra/RelEng/Nightly/jenkins_integration/zephyr_jenkins_${{ env.BACKEND_BRANCH }}_${{github.run_number}}.hpi    
+
+    
