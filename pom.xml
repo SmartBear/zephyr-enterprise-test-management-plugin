@@ -296,16 +296,16 @@
         <tag>HEAD</tag>
     </scm>
 
-    <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
+<!--     get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need-->
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/plugin/</url>
         </repository>
         <repository>
             <id>inhouse</id>
             <name>theD Internal repository</name>
-            <url>https://svninfra.yourzephyr.com/repository/</url>
+            <url>https://svninfra.yourzephyr.com/repository/com/thed</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
