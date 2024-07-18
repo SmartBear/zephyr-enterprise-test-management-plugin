@@ -36,7 +36,10 @@ jobs:
         restore-keys: ${{ runner.os }}-m2     
         
     - name: Build with Maven
-      run:  mvn -B -f pom.xml clean package -Dmaven.test.skip=true
+      run:  |
+       mvn -B -f pom.xml clean package -Dmaven.test.skip=true
+       mvn -v
+       cat /home/runner/.m2/settings.xml
       
     - name: Copy Files to FTP Server
       shell: bash
