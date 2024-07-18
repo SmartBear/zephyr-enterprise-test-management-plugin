@@ -36,6 +36,6 @@ jobs:
     - name: Copy Files to FTP Server
       shell: bash
       run: |
-        scp target/zephyr-enterprise-test-management*.hpi zephyr@18.221.237.186:/share-infra/RelEng/Nightly/jenkins_integration/zephyr_jenkins_${{ env.BACKEND_BRANCH }}_${{github.run_number}}.hpi    
+        scp -i /home/zephyr/.ssh/authorized_keys target/zephyr-enterprise-test-management*.hpi zephyr@18.221.237.186:/share-infra/RelEng/Nightly/jenkins_integration/zephyr_jenkins_${{ env.BACKEND_BRANCH }}_${{github.run_number}}.hpi    
 
     
