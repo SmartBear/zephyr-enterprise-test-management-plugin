@@ -307,7 +307,7 @@
         <repository>
             <id>inhouse</id>
             <name>theD Internal repository</name>
-            <url>file://${project.basedir}/local-jar/</url>
+            <url>https://svninfra.yourzephyr.com/repository/</url>
         </repository>
     </repositories>
 
