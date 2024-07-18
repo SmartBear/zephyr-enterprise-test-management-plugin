@@ -6,7 +6,7 @@ on:
 
 env:
   BACKEND_REPO: 'SmartBear/zephyr-enterprise-test-management-plugin'
-  BACKEND_BRANCH: 'integration'
+  BACKEND_BRANCH: 'github-build'
 
 jobs:
   build:
