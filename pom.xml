@@ -305,13 +305,7 @@
         <repository>
             <id>inhouse</id>
             <name>theD Internal repository</name>
-            <url>https://svninfra.yourzephyr.com/repository/com/thed/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
+            <url>file://${project.basedir}/local-jar/ze_integrator_plugin-1.2.3.jar</url>
         </repository>
     </repositories>
 
