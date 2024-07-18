@@ -37,9 +37,9 @@ jobs:
         
     - name: Build with Maven
       run:  |
-       mvn -v
+       /opt/apache-maven-3.8.8/bin/mvn -v
        java -version
-       mvn clean package -Dmaven.test.skip=true
+       /opt/apache-maven-3.8.8/bin/mvn clean package -Dmaven.test.skip=true
        cat /home/runner/.m2/settings.xml
       
     - name: Copy Files to FTP Server
