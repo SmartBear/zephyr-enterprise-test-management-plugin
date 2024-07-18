@@ -304,11 +304,11 @@
             <id>repo.jenkins-ci.org</id>
             <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
-<!--        <repository>-->
-<!--            <id>inhouse</id>-->
-<!--            <name>theD Internal repository</name>-->
-<!--            <url>file://${project.basedir}/local-jar/</url>-->
-<!--        </repository>-->
+        <repository>
+            <id>inhouse</id>
+            <name>theD Internal repository</name>
+            <url>file://${project.basedir}/local-jar/</url>
+        </repository>
     </repositories>
 
     <pluginRepositories>
