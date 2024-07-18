@@ -14,12 +14,12 @@ jobs:
     runs-on: ze-test-management-plugin
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+    # - uses: actions/checkout@v4
+    # - name: Set up JDK 17
+    #   uses: actions/setup-java@v3
+    #   with:
+    #     java-version: '17'
+    #     distribution: 'temurin'
   
     - name: Checkout BackEnd Code
       uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
         
     - name: Build with Maven
       run:  |
-       mvn -B -f pom.xml clean package -Dmaven.test.skip=true
+       mvn clean package -Dmaven.test.skip=true
        mvn -v
        cat /home/runner/.m2/settings.xml
       
