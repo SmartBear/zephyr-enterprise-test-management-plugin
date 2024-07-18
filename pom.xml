@@ -252,6 +252,8 @@
             <groupId>com.thed</groupId>
             <artifactId>ze_integrator_plugin</artifactId>
             <version>1.2.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/local-jar/ze_integrator_plugin-1.2.3.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -300,13 +302,13 @@
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
-            <url>file://${project.basedir}/local-jar/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
-        <repository>
-            <id>inhouse</id>
-            <name>theD Internal repository</name>
-            <url>file://${project.basedir}/local-jar/</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>inhouse</id>-->
+<!--            <name>theD Internal repository</name>-->
+<!--            <url>file://${project.basedir}/local-jar/</url>-->
+<!--        </repository>-->
     </repositories>
 
     <pluginRepositories>
