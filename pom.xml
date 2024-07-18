@@ -303,10 +303,20 @@
             <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
         <repository>
-            <id>inhouse</id>
-            <name>theD Internal repository</name>
-            <url>https://svninfra.yourzephyr.com/repository/</url>
+            <id>local-maven-repo</id>
+            <url>file:///${project.basedir}/local-repo</url>
         </repository>
+<!--        <repository>-->
+<!--            <id>inhouse</id>-->
+<!--            <name>theD Internal repository</name>-->
+<!--            <url>https://svninfra.yourzephyr.com/repository/</url>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--        </repository>-->
     </repositories>
 
     <pluginRepositories>
