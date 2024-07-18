@@ -2,9 +2,7 @@ name: Master Build
 
 on:
   push:
-    branches: [ "integration" ]
-  pull_request:
-    branches: [ "integration" ]
+    branches: [ "github-build" ]
 
 env:
   BACKEND_REPO: 'SmartBear/zephyr-enterprise-test-management-plugin'
