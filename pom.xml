@@ -299,20 +299,24 @@
     <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
     <repositories>
         <repository>
+            <id>local-repo</id>
+            <url>file:///${project.basedir}/local-repo</url>
+        </repository>
+        <repository>
             <id>repo.jenkins-ci.org</id>
             <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
-        <repository>
-            <id>inhouse</id>
-            <name>theD Internal repository</name>
-            <url>https://svninfra.yourzephyr.com/repository/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
+<!--        <repository>-->
+<!--            <id>inhouse</id>-->
+<!--            <name>theD Internal repository</name>-->
+<!--            <url>https://svninfra.yourzephyr.com/repository/</url>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--        </repository>-->
     </repositories>
 
     <pluginRepositories>
