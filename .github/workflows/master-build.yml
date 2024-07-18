@@ -14,12 +14,6 @@ jobs:
     runs-on: ze-test-management-plugin
 
     steps:
-    # - uses: actions/checkout@v4
-    # - name: Set up JDK 17
-    #   uses: actions/setup-java@v3
-    #   with:
-    #     java-version: '17'
-    #     distribution: 'temurin'
   
     - name: Checkout BackEnd Code
       uses: actions/checkout@v2
@@ -37,10 +31,7 @@ jobs:
         
     - name: Build with Maven
       run:  |
-       /opt/apache-maven-3.8.8/bin/mvn -v
-       java -version
        /opt/apache-maven-3.8.8/bin/mvn clean package -Dmaven.test.skip=true
-       cat /home/runner/.m2/settings.xml
       
     - name: Copy Files to FTP Server
       shell: bash
