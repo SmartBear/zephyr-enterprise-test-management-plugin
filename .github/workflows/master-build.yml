@@ -10,8 +10,8 @@ env:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    name: Run Build
+    runs-on: ze-test-management-plugin
 
     steps:
     - uses: actions/checkout@v4

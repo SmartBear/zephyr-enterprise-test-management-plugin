@@ -252,8 +252,6 @@
             <groupId>com.thed</groupId>
             <artifactId>ze_integrator_plugin</artifactId>
             <version>1.2.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/local-jar/ze_integrator_plugin-1.2.3.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
