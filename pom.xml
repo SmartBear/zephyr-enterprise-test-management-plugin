@@ -302,17 +302,17 @@
             <id>repo.jenkins-ci.org</id>
             <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
-<!--         <repository>
+        <repository>
             <id>inhouse</id>
             <name>theD Internal repository</name>
-            <url>https://svninfra.yourzephyr.com/repository/com/thed</url>
+            <url>https://svninfra.yourzephyr.com/repository/com/thed/</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
             <releases>
                 <enabled>true</enabled>
             </releases>
-        </repository> -->
+        </repository>
     </repositories>
 
     <pluginRepositories>
