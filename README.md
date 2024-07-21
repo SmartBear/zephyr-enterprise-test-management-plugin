@@ -243,14 +243,16 @@ Compatibility between this plugin and Zephyr Enterprise is:
 
 | Plugin | Zephyr Enterprise |
 |--------|-------------------|
-| v2.5   | v7.0 or later     |
+| v2.9   | v8.1 or later    |
+| v2.8   | v7.16 to v8.0.1    |
+| v2.7   | v7.0 to v7.15.1    |
 | v2.4   | v7.0 to v7.15     |
 | v2.3   | v7.0 to v7.15     |
-| v2.2   | v6.7.x to v7.15   |
+| v2.2   | v6.7.x to v7.0    |
 | v2.1.1 | v6.7 to v6.7.3    |
 | v2.1   | v6.7              |
 | v2.0   | v6.6.x            |
-| v1.10  | v6.5 and older    |
+| v1.10  | v6.5.x            |
 
 Older build for plugin can be downloaded [here](https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/zephyr-enterprise-test-management/).
 
