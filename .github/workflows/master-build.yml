@@ -2,11 +2,11 @@ name: Master Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "ZEOP-3168" ]
 
 env:
   BACKEND_REPO: 'SmartBear/zephyr-enterprise-test-management-plugin'
-  BACKEND_BRANCH: 'ZEOP-3168'
+  BACKEND_BRANCH: 'main'
 
 jobs:
   build:
