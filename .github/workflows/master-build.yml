@@ -6,12 +6,15 @@ on:
 
 env:
   BACKEND_REPO: 'SmartBear/zephyr-enterprise-test-management-plugin'
-  BACKEND_BRANCH: 'main'
+  BACKEND_BRANCH: 'ZEOP-3168'
 
 jobs:
   build:
     name: Run Build
-    runs-on: ze-test-management-plugin
+    runs-on: zephyr-enterprise-test-management-plugin
+    permissions:
+      id-token: write
+      contents: write
 
     steps:
   
@@ -32,10 +35,14 @@ jobs:
     - name: Build with Maven
       run:  |
        /opt/apache-maven-3.8.8/bin/mvn clean package -Dmaven.test.skip=true
-      
-    - name: Copy Files to FTP Server
-      shell: bash
-      run: |
-        scp target/zephyr-enterprise-test-management*.hpi zephyr@18.221.237.186:/share-infra/RelEng/Nightly/jenkins_integration/zephyr_jenkins_${{ env.BACKEND_BRANCH }}_${{github.run_number}}.hpi    
 
-    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+        role-session-name: ${{ secrets.ROLE_SESSION_NAME }}
+        aws-region: us-east-2
+
+    - name: Copy build files to S3
+      run: |
+        aws s3 cp target/zephyr-enterprise-test-management*.hpi s3://ze-test-management-plugin-builds/GithubBuilds/Release/${{ env.BACKEND_BRANCH }}_${{ github.run_number }}.hpi
